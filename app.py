@@ -182,6 +182,7 @@ elif menu == "Simulator Pinjaman":
         bunga = st.text_input(
             "Bunga per Tahun (%)",
             placeholder="Masukkan Bunga"
+            key="bunga_pinjaman"
         )
 
     with col2:
@@ -306,6 +307,7 @@ elif menu == "Dana Pensiun":
         bunga_pensiun = st.text_input(
             "Bunga per Tahun (%)",
             placeholder="Masukkan Bunga"
+            key="bunga_pensiun"
         )
 
     with col2:
