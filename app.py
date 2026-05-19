@@ -195,6 +195,10 @@ elif menu == "Simulator Pinjaman":
     st.markdown("---")
 
     if st.button("Hitung Pinjaman"):
+        # VALIDASI INPUT
+        if pinjaman == "" or bunga == "" or tahun == "":
+            st.warning("Masukkan semua data terlebih dahulu.")
+            st.stop()
 
         i = float(bunga.replace(",", ".")) / 100
         n = int(tahun)
@@ -274,10 +278,30 @@ elif menu == "Simulator Pinjaman":
             grafik_df.set_index("Tahun")
         )
 
-        st.info("""
-        Grafik menunjukkan penurunan sisa utang
-        setiap tahun setelah dilakukan pembayaran cicilan.
-        """)
+        st.info(f"""
+            📊 Interpretasi Grafik
+
+            Grafik menunjukkan bahwa sisa utang
+            mengalami penurunan setiap tahun
+            setelah pembayaran cicilan dilakukan.
+            Semakin panjang periode pinjaman,
+            maka cicilan tahunan cenderung lebih kecil,
+            namun total pembayaran bunga dapat meningkat.
+            Besarnya tingkat bunga memengaruhi
+            jumlah total pembayaran dan kecepatan
+            penurunan sisa utang selama masa pinjaman.
+
+            Berdasarkan simulasi ini:
+
+            • Cicilan per tahun:
+            Rp {R:,.0f}
+
+            • Total pembayaran:
+            Rp {total_bayar:,.0f}
+
+            • Total bunga:
+            Rp {total_bunga:,.0f}
+            """)
 
 # =========================
 # DANA PENSIUN
@@ -403,9 +427,34 @@ elif menu == "Dana Pensiun":
                 grafik.set_index("Tahun")
             )
 
-            st.info("""
-            Grafik menunjukkan pertumbuhan
-            dana pensiun dari tahun ke tahun.Semakin lama periode menabung,
-            maka total dana yang terkumpul
-            akan semakin besar.
-            """)
+            # =========================
+            # INTERPRETASI GRAFIK
+            # =========================
+
+            st.info(f"""
+                📊 Interpretasi Grafik
+
+                Grafik menunjukkan pertumbuhan dana pensiun
+                dari tahun ke tahun akibat proses tabungan
+                dan akumulasi bunga investasi.
+                Semakin panjang periode menabung,
+                maka dana yang terkumpul cenderung meningkat
+                karena adanya efek bunga majemuk (compound interest).
+                Besarnya tingkat bunga dan lama investasi
+                mempengaruhi kecepatan pertumbuhan dana pensiun
+                selama periode simulasi.
+
+                Berdasarkan hasil simulasi ini:
+
+                • Usia sekarang:
+                {usia_awal} tahun
+
+                • Usia pensiun:
+                {usia_akhir} tahun
+
+                • Lama menabung:
+                {n} tahun
+
+                • Estimasi total dana pensiun:
+                Rp {hasil:,.0f}
+                """)
